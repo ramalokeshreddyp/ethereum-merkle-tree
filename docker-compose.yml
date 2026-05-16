@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ethereum-merkle-tree:latest
+    container_name: merkle_tree_app
+    env_file:
+      - .env
+    # Run all parts by default.
+    # Override CMD to run specific parts:
+    #   docker compose run app python main.py --part 1
+    #   docker compose run app python main.py --extensions a b c d
+    command: ["python", "main.py"]
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ethereum-merkle-tree:latest
+    container_name: merkle_tree_tests
+    env_file:
+      - .env
+    command: ["pytest", "tests/", "-v", "--tb=short"]
