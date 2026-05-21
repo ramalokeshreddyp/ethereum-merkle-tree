@@ -440,4 +440,4 @@ options:
 
 ## 📄 License
 
-MIT © 2025
+MIT © 2026
